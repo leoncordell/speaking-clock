@@ -2,15 +2,15 @@ package com.clocks.speakingclock;
 
 public class DisplayTime {
 
-    private static String[] hours = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven",
+    private static final String[] hours = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven",
     "twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
             "nineteen","twenty","twenty one","twenty two","twenty three","twenty four"};
 
-    private static String[] units = {"one","two","three","four","five","six","seven","eight","nine","ten"};
+    private static final String[] units = {"one","two","three","four","five","six","seven","eight","nine","ten"};
 
-    private static String[] teens = {"Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen",
-        "Nineteen"};
-    private static String[] tens = {"","twenty","thirty","forty","fifty"};
+    private static final String[] teens = {"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
+        "nineteen"};
+    private static final String[] tens = {"","twenty","thirty","forty","fifty"};
 
     public String getTime(String inputStr){
         if(inputStr==null || !inputStr.contains(":")){

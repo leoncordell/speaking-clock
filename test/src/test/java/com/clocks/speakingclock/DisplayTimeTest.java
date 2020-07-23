@@ -21,7 +21,13 @@ public class DisplayTimeTest {
         assertEquals("It's eight o'clock",result);
     }
 
-
+    @Test
+    public void getTimeHourMin(){
+        String input1 ="08:01";
+        DisplayTime displayTime = new DisplayTime();
+        String result = displayTime.getTime(input1);
+        assertEquals("It's eight one",result);
+    }
 
     @Test
     public void getTimeHourMidday(){
@@ -79,5 +85,13 @@ public class DisplayTimeTest {
         DisplayTime displayTime = new DisplayTime();
         String result = displayTime.getTime(input1);
         assertEquals("It's eight fifty nine",result);
+    }
+
+    @Test
+    public void getTimeMinTensUnits3(){
+        String input1 ="23:59";
+        DisplayTime displayTime = new DisplayTime();
+        String result = displayTime.getTime(input1);
+        assertEquals("It's twenty three fifty nine",result);
     }
 }
