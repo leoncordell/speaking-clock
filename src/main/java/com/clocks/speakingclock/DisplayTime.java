@@ -74,7 +74,6 @@ public class DisplayTime {
             if(min%10 >0) {
                 result += " " + units[min % 10 - 1];
             }
-            result = result;
         }
 
         return result;
