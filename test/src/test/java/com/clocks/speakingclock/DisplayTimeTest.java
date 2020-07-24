@@ -14,6 +14,20 @@ public class DisplayTimeTest {
     }
 
     @Test
+    public void getTimeTest2(){
+        String input1 ="8:50:77";
+        DisplayTime displayTime = new DisplayTime();
+        assertEquals("Please enter a valid  time",displayTime.getTime(input1));
+    }
+
+    @Test
+    public void getTimeTest3(){
+        String input1 ="8:t";
+        DisplayTime displayTime = new DisplayTime();
+        assertEquals("Please enter a valid  time",displayTime.getTime(input1));
+    }
+
+    @Test
     public void getTimeHour(){
         String input1 ="08:00";
         DisplayTime displayTime = new DisplayTime();
@@ -94,4 +108,14 @@ public class DisplayTimeTest {
         String result = displayTime.getTime(input1);
         assertEquals("It's twenty three fifty nine",result);
     }
+
+    @Test
+    public void validateInputTest1(){
+        String input1 ="23:59";
+        DisplayTime displayTime = new DisplayTime();
+        String result = displayTime.getTime(input1);
+        assertEquals("It's twenty three fifty nine",result);
+    }
+
+
 }
