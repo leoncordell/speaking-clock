@@ -2,24 +2,26 @@ package com.clocks.speakingclock;
 
 public class DisplayTime {
 
-    private static String[] hours = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven",
-    "twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
+    private static final String[] hours = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven",
+            "twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
             "nineteen","twenty","twenty one","twenty two","twenty three","twenty four"};
 
-    private static String[] units = {"one","two","three","four","five","six","seven","eight","nine","ten"};
+    private static final String[] units = {"one","two","three","four","five","six","seven","eight","nine","ten"};
 
-    private static String[] teens = {"Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen",
-        "Nineteen"};
-    private static String[] tens = {"","twenty","thirty","forty","fifty"};
+    private static final String[] teens = {"eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
+            "nineteen"};
+    private static final String[] tens = {"","twenty","thirty","forty","fifty"};
 
     public String getTime(String inputStr){
-        if(inputStr==null || !inputStr.contains(":")){
+
+        String[] input = new String[2];
+
+        if(!validateInput(inputStr,input)){
             return "Please enter a valid  time";
         }
-        String[] input = inputStr.split(":");
 
-        int hour = Integer.parseInt(input[0]);
-        int min = Integer.parseInt(input[1]);
+        Integer hour  = Integer.parseInt(input[0]);
+        Integer min =   Integer.parseInt(input[1]);
 
         if(hour==12 && min==0){
             return "It's Midday";
@@ -39,6 +41,28 @@ public class DisplayTime {
         return result;
     }
 
+    private boolean validateInput(String inputStr, String[] input) {
+        if(inputStr==null || !inputStr.contains(":")){
+            return false;
+        }
+        String[] candidateInput = inputStr.split(":");
+        if(candidateInput.length !=2){
+            return false;
+        }
+        input[0]=candidateInput[0];
+        input[1]=candidateInput[1];
+
+        try{
+            Integer.parseInt(input[0]);
+            Integer.parseInt(input[1]);
+        }catch(NumberFormatException nf){
+            System.out.println("Time wrong format");
+            return false;
+        }
+        return true;
+
+    }
+
     private String getMinuteText(int min){
         String result ="";
         if(min < 11){
@@ -48,13 +72,16 @@ public class DisplayTime {
         }else{
             result = tens[min/10 -1] ;
             if(min%10 >0) {
-              result += " " + units[min % 10 - 1];
+                result += " " + units[min % 10 - 1];
             }
             result = result;
         }
 
         return result;
     }
+
+
+
 
 
 }
