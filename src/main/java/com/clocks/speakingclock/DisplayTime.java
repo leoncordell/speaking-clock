@@ -1,6 +1,13 @@
 package com.clocks.speakingclock;
 
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class DisplayTime {
+
+    Logger logger =  Logger.getLogger(DisplayTime.class.getName());
 
     private static final String[] hours = {"one","two","three","four","five","six","seven","eight","nine","ten","eleven",
             "twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen",
@@ -56,6 +63,8 @@ public class DisplayTime {
             Integer.parseInt(input[0]);
             Integer.parseInt(input[1]);
         }catch(NumberFormatException nf){
+            Handler consoleHandler = new ConsoleHandler();
+            logger.log(Level.ALL,nf.getMessage());
             System.out.println("Time wrong format");
             return false;
         }
