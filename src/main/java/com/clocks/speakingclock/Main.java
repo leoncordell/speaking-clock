@@ -6,25 +6,19 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class Main {
+    private static  final String ENTER_TEXT = "Please Enter a time : (Q to quit)";
+
     public static void main(String[] args) throws InterruptedException, IOException {
         DisplayTime dt = new DisplayTime();
         Scanner sc = new Scanner(System.in);
         String input ="";
         boolean quit =false;
-        while(!quit){
-            if(sc.hasNext()){
-                input=sc.nextLine();
-            }
-            if(input.equals("Q")){
-                quit=true;
-                continue;
-            }
-            if(input.length()>0) {
-                System.out.println(dt.getTime(input));
-            }else{
-                Thread.sleep(5000);
-            }
-        }
+
+        do {
+            System.out.println(ENTER_TEXT);
+            input=sc.nextLine();
+            System.out.println(dt.getTime(input));
+        }while(!input.equals("Q"));
 
     }
 }

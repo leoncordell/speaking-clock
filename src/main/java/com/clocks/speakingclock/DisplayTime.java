@@ -19,29 +19,41 @@ public class DisplayTime {
             "nineteen"};
     private static final String[] tens = {"","twenty","thirty","forty","fifty"};
 
+    private static final String VALID_TIME = "Please enter a valid  time";
+    private static final String MID_DAY = "It's Midday";
+
+    private static final String MID_NIGHT = "It's Midnight";
+
+    private static final String MIN_PAST = "minute past";
+    private static final String MINS_PAST = "minutes past";
+    private static  final String SPACE = " ";
+
+
+
+
     public String getTime(String inputStr){
 
         String[] input = new String[2];
 
         if(!validateInput(inputStr,input)){
-            return "Please enter a valid  time";
+            return VALID_TIME;
         }
 
         Integer hour  = Integer.parseInt(input[0]);
         Integer min =   Integer.parseInt(input[1]);
 
         if(hour==12 && min==0){
-            return "It's Midday";
+            return MID_DAY;
         }
         if(hour==24 && min==0){
-            return "It's Midnight";
+            return MID_NIGHT;
         }
 
-        String  result = "It's " + hours[hour -1] + " ";
+        String  result = "It's ";
         if(min==0){
-            result +=   "o'clock";
+            result += hours[hour -1] + " " + "o'clock";
         }else{
-            result += getMinuteText(min);
+            result += getMinuteText(min,hour);
         }
 
 
@@ -72,19 +84,23 @@ public class DisplayTime {
 
     }
 
-    private String getMinuteText(int min){
+    private String getMinuteText(int min,int hour){
         String result ="";
+        StringBuilder sb = new StringBuilder();
         if(min < 11){
-            result=units[min-1];
+                String min_text = min==1?MIN_PAST:MINS_PAST;
+                sb.append(units[min - 1]).append(SPACE).append(min_text).append(SPACE).append(hours[hour - 1]);
         }else if(min < 20){
-            result = teens[min%10 -1].toLowerCase();
+            sb.append(hours[hour -1]).append(SPACE).append(teens[min%10 -1]);
         }else{
-            result = tens[min/10 -1] ;
+            sb.append(hours[hour -1]);
+            sb.append(SPACE);
+            sb.append(tens[min/10 -1]);
             if(min%10 >0) {
-                result += " " + units[min % 10 - 1];
+                sb.append(SPACE).append(units[min % 10 - 1]);
             }
         }
-
+        result = sb.toString();
         return result;
     }
 

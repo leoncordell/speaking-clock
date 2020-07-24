@@ -40,7 +40,7 @@ public class DisplayTimeTest {
         String input1 ="08:01";
         DisplayTime displayTime = new DisplayTime();
         String result = displayTime.getTime(input1);
-        assertEquals("It's eight one",result);
+        assertEquals("It's one minute past eight",result);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class DisplayTimeTest {
         String input1 ="08:05";
         DisplayTime displayTime = new DisplayTime();
         String result = displayTime.getTime(input1);
-        assertEquals("It's eight five",result);
+        assertEquals("It's five minutes past eight",result);
     }
 
     @Test
