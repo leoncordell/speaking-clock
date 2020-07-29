@@ -7,6 +7,20 @@ import static org.junit.Assert.*;
 public class DisplayTimeTest {
 
     @Test
+    public void getTimeTestA(){
+        String input1 ="27:78";
+        DisplayTime displayTime = new DisplayTime();
+        assertEquals("Please enter a valid  time",displayTime.getTime(input1));
+    }
+
+    @Test
+    public void getTimeTestB(){
+        String input1 ="-1:-8";
+        DisplayTime displayTime = new DisplayTime();
+        assertEquals("Please enter a valid  time",displayTime.getTime(input1));
+    }
+
+    @Test
     public void getTimeTest(){
         String input1 ="";
         DisplayTime displayTime = new DisplayTime();

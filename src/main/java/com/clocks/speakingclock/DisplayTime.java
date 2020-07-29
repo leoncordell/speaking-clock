@@ -19,7 +19,7 @@ public class DisplayTime {
             "nineteen"};
     private static final String[] tens = {"","twenty","thirty","forty","fifty"};
 
-    private static final String VALID_TIME = "Please enter a valid  time";
+    private static final String INVALID_TIME = "Please enter a valid  time";
     private static final String MID_DAY = "It's Midday";
 
     private static final String MID_NIGHT = "It's Midnight";
@@ -28,19 +28,19 @@ public class DisplayTime {
     private static final String MINS_PAST = "minutes past";
     private static  final String SPACE = " ";
 
-
+    ValidateTime validateTime = new ValidateTime();
 
 
     public String getTime(String inputStr){
 
         String[] input = new String[2];
 
-        if(!validateInput(inputStr,input)){
-            return VALID_TIME;
+        if(!validateTime.validateInput(inputStr,input)){
+            return INVALID_TIME;
         }
 
-        Integer hour  = Integer.parseInt(input[0]);
-        Integer min =   Integer.parseInt(input[1]);
+        int hour  = Integer.parseInt(input[0]);
+        int min =   Integer.parseInt(input[1]);
 
         if(hour==12 && min==0){
             return MID_DAY;
@@ -60,32 +60,9 @@ public class DisplayTime {
         return result;
     }
 
-    private boolean validateInput(String inputStr, String[] input) {
-        if(inputStr==null || !inputStr.contains(":")){
-            return false;
-        }
-        String[] candidateInput = inputStr.split(":");
-        if(candidateInput.length !=2){
-            return false;
-        }
-        input[0]=candidateInput[0];
-        input[1]=candidateInput[1];
 
-        try{
-            Integer.parseInt(input[0]);
-            Integer.parseInt(input[1]);
-        }catch(NumberFormatException nf){
-            Handler consoleHandler = new ConsoleHandler();
-            logger.log(Level.ALL,nf.getMessage());
-            System.out.println("Time wrong format");
-            return false;
-        }
-        return true;
-
-    }
 
     private String getMinuteText(int min,int hour){
-        String result ="";
         StringBuilder sb = new StringBuilder();
         if(min < 11){
                 String min_text = min==1?MIN_PAST:MINS_PAST;
@@ -100,8 +77,8 @@ public class DisplayTime {
                 sb.append(SPACE).append(units[min % 10 - 1]);
             }
         }
-        result = sb.toString();
-        return result;
+
+        return sb.toString();
     }
 
 
