@@ -1,10 +1,14 @@
 package com.clocks.speakingclock;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Component
 public class DisplayTime {
 
     Logger logger =  Logger.getLogger(DisplayTime.class.getName());
@@ -28,7 +32,11 @@ public class DisplayTime {
     private static final String MINS_PAST = "minutes past";
     private static  final String SPACE = " ";
 
-    ValidateTime validateTime = new ValidateTime();
+    @Autowired
+    ValidateTime validateTime ;
+
+
+
 
 
     public String getTime(String inputStr){
@@ -38,9 +46,9 @@ public class DisplayTime {
         if(!validateTime.validateInput(inputStr,input)){
             return INVALID_TIME;
         }
-
-        int hour  = Integer.parseInt(input[0]);
-        int min =   Integer.parseInt(input[1]);
+        String[] candidateInput = inputStr.split(":");
+        int hour  = Integer.parseInt(candidateInput[0]);
+        int min =   Integer.parseInt(candidateInput[1]);
 
         if(hour==12 && min==0){
             return MID_DAY;

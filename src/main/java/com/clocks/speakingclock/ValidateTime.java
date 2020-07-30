@@ -1,10 +1,15 @@
 package com.clocks.speakingclock;
 
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Component
+@NoArgsConstructor
 public class ValidateTime {
     Logger logger =  Logger.getLogger(ValidateTime.class.getName());
 

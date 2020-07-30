@@ -10,9 +10,13 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TimeObj{
+public class TimeObj {
 
-    private String val ;
+    private String val;
+
+    public TimeObj(String val) {
+        this.val = val;
+    }
 
 
 }
